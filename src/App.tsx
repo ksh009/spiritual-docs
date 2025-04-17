@@ -1,88 +1,140 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 interface PlaceholderProps {
   title: string;
 }
 
-const Placeholder: React.FC<PlaceholderProps> = ({ title }) => <div>{title} Content Coming Soon...</div>;
+const Placeholder: React.FC<PlaceholderProps> = ({ title }) => (
+  <div>{title} Content Coming Soon...</div>
+);
 
-const sections = [
-  { path: "/intro", label: "Spiritual Sovereignty: Introduction & Purpose" },
-  { path: "/framework", label: "Internal, Embodied, and External Sovereignty Framework" },
-  { path: "/why-sovereignty", label: "Why sovereignty matters in awakening" },
-  { path: "/awakening", label: "The Awakening Process" },
-  { path: "/internal-disillusionment", label: "Internal disillusionment" },
-  { path: "/ego-death", label: "Ego death and shadow emergence" },
-  { path: "/void", label: "Living in the void" },
-  { path: "/self-mastery", label: "Self-mastery through inner work" },
-  { path: "/spiral-model", label: "The Spiral Model of Ascension" },
-  { path: "/expansion-contraction", label: "How expansion/contraction phases work" },
-  { path: "/timeline-shifts", label: "Energetic upgrades and timeline shifts" },
-  { path: "/construct", label: "The Artificial Construct & Reality as Simulation" },
-  { path: "/scripted-world", label: "Seeing the scripted world" },
-  { path: "/loops", label: "Repeating loops and pattern recognition" },
-  { path: "/creative-energy", label: "Emotional energy as a creative resource" },
-  { path: "/higher-self-shadow", label: "The Role of the Higher Self, Shadow, and Sovereign Archetype" },
-  { path: "/you-are-not-shadow", label: "You are not your shadow" },
-  { path: "/not-higher-self", label: "You are not your higher self either" },
-  { path: "/integration", label: "Integrating both to create your own path" },
-  { path: "/ethics", label: "The Ethics of Incarnation" },
-  { path: "/soul-contracts", label: "Emotional consequences of soul contracts" },
-  { path: "/antenna-vs-sovereign", label: "Being used as an antenna vs being a sovereign being" },
-  { path: "/authorship", label: "Reclaiming authorship of your journey" },
-  { path: "/fractured-mind", label: "Fractured Mind and Quantum Programming" },
-  { path: "/mental-echoes", label: "Mental echoes from past timelines" },
-  { path: "/spiral-thinking", label: "Thinking in spirals" },
-  { path: "/reprogramming", label: "Reprogramming vs deprogramming" },
-  { path: "/pluto-deconstruction", label: "Pluto's Timeline of Psyche Deconstruction" },
-  { path: "/pluto-role", label: "Role of Pluto in dismantling false identities" },
-  { path: "/pluto-timeline", label: "Timeline of psychological transformation" },
-  { path: "/144000", label: "The Role of the 144,000 and Earth Grid Placement" },
-  { path: "/zodiac-portals", label: "Chakras as zodiacal portals" },
-  { path: "/earth-grid", label: "Placement around the Earth grid" },
-  { path: "/harmonics", label: "Harmonic resonance and global upgrades" },
-  { path: "/future-boredom", label: "Consciousness, Simulation Theory & Future Boredom" },
-  { path: "/limitation-games", label: "Why advanced souls create limitation games" },
-  { path: "/coding-growth", label: "Coding spiritual growth into dense timelines" },
-  { path: "/system-mastery", label: "Escaping the system vs mastering it" },
-  { path: "/soul-archetypes", label: "Soul Archetype Map" },
-  { path: "/archetype-triggers", label: "Explorer, Healer, Architect, Watcher, Rebel, etc." },
-  { path: "/balancing-tools", label: "Triggers and balancing tools" },
-  { path: "/emotional-mastery", label: "Emotional Mastery & Shadow Energy" },
-  { path: "/emotional-sovereignty", label: "Reclaiming emotional sovereignty" },
-  { path: "/energy-leaks", label: "Identifying energy leaks and distortions" },
-  { path: "/relationship-lessons", label: "Romantic Detachment and Relationship Lessons" },
-  { path: "/twin-flame", label: "Twin flame disillusionment" },
-  { path: "/empowered-love", label: "Karmic connections vs empowered love" },
-  { path: "/flowing-intimacy", label: "Flowing intimacy vs fixed partnership ideals" },
+const navStructure = [
+  {
+    emoji: "🌱",
+    label: "Foundational Topics",
+    items: [
+      { path: "/intro", label: "Intro & Purpose" },
+      { path: "/framework", label: "Sovereignty Framework" },
+      { path: "/why-sovereignty", label: "Why It Matters" },
+      { path: "/awakening", label: "Awakening Process" },
+      { path: "/internal-disillusionment", label: "Disillusionment" },
+      { path: "/ego-death", label: "Ego Death" },
+      { path: "/void", label: "The Void" },
+      { path: "/self-mastery", label: "Self-Mastery" },
+      { path: "/spiral-model", label: "Spiral Model" },
+      { path: "/expansion-contraction", label: "Expansion/Contraction" },
+      { path: "/timeline-shifts", label: "Timeline Shifts" },
+    ],
+  },
+  {
+    emoji: "🧠",
+    label: "Psychological Deconstruction",
+    items: [
+      { path: "/construct", label: "The Construct" },
+      { path: "/scripted-world", label: "Scripted World" },
+      { path: "/loops", label: "Loops & Patterns" },
+      { path: "/creative-energy", label: "Creative Energy" },
+      { path: "/higher-self-shadow", label: "Higher Self vs Shadow" },
+      { path: "/you-are-not-shadow", label: "Not Your Shadow" },
+      { path: "/not-higher-self", label: "Not Higher Self" },
+      { path: "/integration", label: "Integration" },
+      { path: "/ethics", label: "Incarnation Ethics" },
+      { path: "/soul-contracts", label: "Soul Contracts" },
+      { path: "/antenna-vs-sovereign", label: "Antenna vs Sovereign" },
+      { path: "/authorship", label: "Authorship" },
+    ],
+  },
+  {
+    emoji: "💫",
+    label: "Quantum & Multidimensional Themes",
+    items: [
+      { path: "/fractured-mind", label: "Fractured Mind" },
+      { path: "/mental-echoes", label: "Mental Echoes" },
+      { path: "/spiral-thinking", label: "Spiral Thinking" },
+      { path: "/reprogramming", label: "Reprogramming" },
+      { path: "/pluto-deconstruction", label: "Pluto Deconstruction" },
+      { path: "/pluto-role", label: "Pluto's Role" },
+      { path: "/pluto-timeline", label: "Pluto Timeline" },
+      { path: "/144000", label: "144,000 Souls" },
+      { path: "/zodiac-portals", label: "Zodiac Portals" },
+      { path: "/earth-grid", label: "Earth Grid" },
+      { path: "/harmonics", label: "Harmonic Upgrades" },
+      { path: "/future-boredom", label: "Future Boredom" },
+      { path: "/limitation-games", label: "Limitation Games" },
+      { path: "/coding-growth", label: "Coding Growth" },
+      { path: "/system-mastery", label: "System Mastery" },
+    ],
+  },
+  {
+    emoji: "🧙",
+    label: "Archetypes, Emotions & Soul Curricula",
+    items: [
+      { path: "/soul-archetypes", label: "Soul Archetypes" },
+      { path: "/archetype-triggers", label: "Archetype Triggers" },
+      { path: "/balancing-tools", label: "Balancing Tools" },
+      { path: "/emotional-mastery", label: "Emotional Mastery" },
+      { path: "/emotional-sovereignty", label: "Emotional Sovereignty" },
+      { path: "/energy-leaks", label: "Energy Leaks" },
+      { path: "/relationship-lessons", label: "Relationships" },
+      { path: "/twin-flame", label: "Twin Flame" },
+      { path: "/empowered-love", label: "Empowered Love" },
+      { path: "/flowing-intimacy", label: "Flowing Intimacy" },
+    ],
+  },
 ];
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.className = darkMode ? "dark" : "light";
   }, [darkMode]);
 
+  const toggleSection = (label: string) => {
+    setOpenSection(openSection === label ? null : label);
+  };
+
   return (
     <Router>
-      <div className={`min-h-screen flex flex-col md:flex-row ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
-        <header className="p-4">
-          <h1 className="text-2xl font-bold">Spiritual Docs</h1>
-          <nav className="mt-4 space-y-2">
-            {sections.map(({ path, label }) => (
-              <NavLink
-                key={path}
-                to={path}
-                className={({ isActive }) =>
-                  `${
-                    isActive ? "font-semibold underline" : ""
-                  } block py-1 hover:text-indigo-600 transition-colors`
-                }
-              >
-                {label}
-              </NavLink>
+      <div
+        className={`min-h-screen flex flex-col md:flex-row ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}
+      >
+        <header className="p-4 md:w-72 border-r border-gray-200 dark:border-gray-700">
+          <h1 className="text-2xl font-bold mb-4">Spiritual Docs</h1>
+          <nav className="space-y-2">
+            {navStructure.map(({ emoji, label, items }) => (
+              <div key={label}>
+                <button
+                  onClick={() => toggleSection(label)}
+                  className="w-full text-left font-semibold py-2 px-2 hover:bg-indigo-100 dark:hover:bg-gray-800 rounded"
+                >
+                  {emoji} {label}
+                </button>
+                {openSection === label && (
+                  <div className="pl-4 mt-1 space-y-1">
+                    {items.map(({ path, label }) => (
+                      <NavLink
+                        key={path}
+                        to={path}
+                        className={({ isActive }) =>
+                          `${
+                            isActive ? "underline font-medium" : ""
+                          } block text-sm hover:text-indigo-600 transition-colors`
+                        }
+                      >
+                        {label}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           <button
@@ -95,16 +147,18 @@ const App = () => {
 
         <main className="flex-1 p-4 overflow-y-auto">
           <Routes>
-            {sections.map(({ path }) => (
-              <Route
-                key={path}
-                path={path}
-                element={<Placeholder title={sections.find((s) => s.path === path)?.label || "Content"} />}
-              />
-            ))}
+            {navStructure.flatMap((section) =>
+              section.items.map(({ path, label }) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={<Placeholder title={label} />}
+                />
+              ))
+            )}
             <Route
               path="*"
-              element={<Placeholder title="Spiritual Sovereignty: Introduction & Purpose" />}
+              element={<Placeholder title="Intro & Purpose" />}
             />
           </Routes>
         </main>
@@ -114,3 +168,4 @@ const App = () => {
 };
 
 export default App;
+
