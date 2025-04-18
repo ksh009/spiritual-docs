@@ -105,7 +105,7 @@ const App = () => {
   return (
     <Router>
       <div
-        className={`min-h-screen flex flex-col md:flex-row ${
+        className={`min-h-screen flex flex-col md:flex-row pb-6 ${
           darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
         }`}
       >
@@ -135,42 +135,46 @@ const App = () => {
             </button>
           </div>
 
-          <nav className="space-y-2">
-            {navStructure.map(({ emoji, label, items }) => (
-              <div key={label}>
-                <button
-                  onClick={() => toggleSection(label)}
-                  className="w-full text-left font-semibold py-2 px-2 hover:bg-indigo-100 dark:hover:bg-gray-800 rounded"
-                >
-                  {emoji} {label}
-                </button>
-                {openSection === label && (
-                  <div className="pl-4 mt-1 space-y-1">
-                    {items.map(({ path, label }) => (
-                      <NavLink
-                        key={path}
-                        to={path}
-                        className={({ isActive }) =>
-                          `${
-                            isActive ? "underline font-medium" : ""
-                          } block text-sm hover:text-indigo-600 transition-colors`
-                        }
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {label}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition w-full"
-          >
-            Toggle {darkMode ? "Light" : "Dark"} Mode
-          </button>
+          <div className="flex h-full flex-col">
+            <nav className="space-y-2">
+              {navStructure.map(({ emoji, label, items }) => (
+                <div key={label}>
+                  <button
+                    onClick={() => toggleSection(label)}
+                    className="w-full text-left font-semibold py-2 px-2 hover:bg-indigo-100 dark:hover:bg-gray-800 rounded"
+                  >
+                    {emoji} {label}
+                  </button>
+                  {openSection === label && (
+                    <div className="pl-4 mt-1 space-y-1">
+                      {items.map(({ path, label }) => (
+                        <NavLink
+                          key={path}
+                          to={path}
+                          className={({ isActive }) =>
+                            `${
+                              isActive ? "underline font-medium" : ""
+                            } block text-sm hover:text-indigo-600 transition-colors`
+                          }
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+            <div className="h-full flex justify-center items-end border-t border-gray-300 dark:border-gray-700 pb-8">
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="w-full h-12 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+              >
+                Toggle {darkMode ? "Light" : "Dark"} Mode
+              </button>
+            </div>
+          </div>
         </aside>
 
         {/* Main Content */}
