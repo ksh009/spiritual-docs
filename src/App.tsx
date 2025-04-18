@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 
 interface PlaceholderProps {
   title: string;
 }
 
 const Placeholder: React.FC<PlaceholderProps> = ({ title }) => (
-  <div>{title} Content Coming Soon...</div>
+  <div className="p-4">{title} Content Coming Soon...</div>
 );
 
 const navStructure = [
@@ -92,6 +87,7 @@ const navStructure = [
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.className = darkMode ? "dark" : "light";
@@ -103,11 +99,15 @@ const App = () => {
 
   return (
     <Router>
-      <div
-        className={`min-h-screen flex flex-col md:flex-row ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}
-      >
-        <header className="p-4 md:w-72 border-r border-gray-200 dark:border-gray-700">
-          <h1 className="text-2xl font-bold mb-4">Spiritual Docs</h1>
+      <div className={`min-h-screen flex flex-col md:flex-row ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+        {/* Mobile Nav */}
+        <div className="flex items-center justify-between md:hidden p-4 border-b border-gray-300 dark:border-gray-700">
+          <h1 className="text-xl font-bold">Spiritual Docs</h1>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>☰</button>
+        </div>
+
+        {/* Sidebar */}
+        <aside className={`md:block ${mobileMenuOpen ? "block" : "hidden"} md:w-72 p-4 border-r border-gray-200 dark:border-gray-700`}>
           <nav className="space-y-2">
             {navStructure.map(({ emoji, label, items }) => (
               <div key={label}>
@@ -124,10 +124,9 @@ const App = () => {
                         key={path}
                         to={path}
                         className={({ isActive }) =>
-                          `${
-                            isActive ? "underline font-medium" : ""
-                          } block text-sm hover:text-indigo-600 transition-colors`
+                          `${isActive ? "underline font-medium" : ""} block text-sm hover:text-indigo-600 transition-colors`
                         }
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         {label}
                       </NavLink>
@@ -139,12 +138,13 @@ const App = () => {
           </nav>
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+            className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition w-full"
           >
             Toggle {darkMode ? "Light" : "Dark"} Mode
           </button>
-        </header>
+        </aside>
 
+        {/* Main Content */}
         <main className="flex-1 p-4 overflow-y-auto">
           <Routes>
             {navStructure.flatMap((section) =>
@@ -156,10 +156,7 @@ const App = () => {
                 />
               ))
             )}
-            <Route
-              path="*"
-              element={<Placeholder title="Intro & Purpose" />}
-            />
+            <Route path="*" element={<Placeholder title="Intro & Purpose" />} />
           </Routes>
         </main>
       </div>
@@ -168,4 +165,3 @@ const App = () => {
 };
 
 export default App;
-
