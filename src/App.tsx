@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 interface PlaceholderProps {
   title: string;
@@ -90,7 +95,7 @@ const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    document.body.className = darkMode ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", darkMode); // instead of body
   }, [darkMode]);
 
   const toggleSection = (label: string) => {
@@ -99,7 +104,11 @@ const App = () => {
 
   return (
     <Router>
-      <div className={`min-h-screen flex flex-col md:flex-row ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+      <div
+        className={`min-h-screen flex flex-col md:flex-row ${
+          darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+        }`}
+      >
         {/* Mobile Nav */}
         <div className="flex items-center justify-between md:hidden p-4 border-b border-gray-300 dark:border-gray-700">
           <h1 className="text-xl font-bold">Spiritual Docs</h1>
@@ -107,7 +116,25 @@ const App = () => {
         </div>
 
         {/* Sidebar */}
-        <aside className={`md:block ${mobileMenuOpen ? "block" : "hidden"} md:w-72 p-4 border-r border-gray-200 dark:border-gray-700`}>
+        <aside
+          className={`
+            fixed top-0 left-0 h-full z-40 bg-white dark:bg-gray-900 shadow-md w-full transform
+            transition-transform duration-300 ease-in-out
+            ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
+            md:relative md:translate-x-0 md:block md:w-72 md:shadow-none
+            p-4 border-r border-gray-200 dark:border-gray-700`}
+        >
+          {/* Close Button (Mobile Only) */}
+          <div className="flex justify-end md:hidden mb-2">
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-gray-600 dark:text-gray-300 hover:text-red-500 text-xl"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+          </div>
+
           <nav className="space-y-2">
             {navStructure.map(({ emoji, label, items }) => (
               <div key={label}>
@@ -124,7 +151,9 @@ const App = () => {
                         key={path}
                         to={path}
                         className={({ isActive }) =>
-                          `${isActive ? "underline font-medium" : ""} block text-sm hover:text-indigo-600 transition-colors`
+                          `${
+                            isActive ? "underline font-medium" : ""
+                          } block text-sm hover:text-indigo-600 transition-colors`
                         }
                         onClick={() => setMobileMenuOpen(false)}
                       >
