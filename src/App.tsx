@@ -5,6 +5,8 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
+import SovereigntyFramework from "./components/SovereigntyFramework";
+import SpiritualSovereignty from "./components/SpiritualSovereignty";
 
 // Define props interface for TypeScript
 interface PlaceholderProps {
@@ -21,8 +23,12 @@ const navStructure = [
     emoji: "🌱",
     label: "Foundational Topics",
     items: [
-      { path: "/intro", label: "Intro & Purpose" },
-      { path: "/framework", label: "Sovereignty Framework" },
+      { path: "/intro", label: "Intro & Purpose", component: <SpiritualSovereignty /> },
+      {
+        path: "/framework",
+        label: "Sovereignty Framework",
+        component: <SovereigntyFramework />,
+      },
       { path: "/why-sovereignty", label: "Why It Matters" },
       { path: "/awakening", label: "Awakening Process" },
       { path: "/internal-disillusionment", label: "Disillusionment" },
@@ -135,12 +141,16 @@ const App = () => {
             ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
             md:relative md:translate-x-0 md:block md:w-72 md:shadow-none
             p-4 border-r
-            ${darkMode ? "bg-gray-900 text-white border-gray-700" : "bg-white text-gray-900 border-gray-200"}
+            ${
+              darkMode
+                ? "bg-gray-900 text-white border-gray-700"
+                : "bg-white text-gray-900 border-gray-200"
+            }
             overflow-y-auto
           `}
         >
           {/* Close Button (Mobile Only) - ensure text color works in dark mode */}
-          <div className="flex justify-end md:hidden mb-2">
+          <div className="flex justify-end md:hidden mb-6">
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="text-gray-300 dark:text-gray-600 hover:text-red-500 text-xl focus:outline-none"
@@ -152,16 +162,19 @@ const App = () => {
 
           <div className="flex h-full flex-col">
             {/* Navigation links container - ensure text color inherits */}
-            <nav className="space-y-2 flex-1"> {/* Added flex-1 to push toggle to bottom */}
+            <nav className="space-y-2 flex-1">
+              {" "}
+              {/* Added flex-1 to push toggle to bottom */}
               {navStructure.map(({ emoji, label, items }) => (
                 <div key={label}>
                   {/* Section Header Button - ensure text color and hover/focus work in dark mode */}
                   <button
                     onClick={() => toggleSection(label)}
                     className={`w-full text-left font-semibold py-2 px-2 rounded focus:outline-none
-                      ${darkMode
-                        ? "hover:bg-gray-800 text-white"
-                        : "hover:bg-indigo-100 text-gray-900"
+                      ${
+                        darkMode
+                          ? "hover:bg-gray-800 text-white"
+                          : "hover:bg-indigo-100 text-gray-900"
                       }
                     `}
                   >
@@ -175,9 +188,12 @@ const App = () => {
                           to={path}
                           className={({ isActive }) =>
                             `block text-sm hover:text-indigo-600 transition-colors py-1 px-2 rounded
-                            ${isActive
+                            ${
+                              isActive
                                 ? "underline font-medium text-indigo-600" // Active state color
-                                : (darkMode ? "text-gray-300 hover:text-indigo-400" : "text-gray-700 hover:text-indigo-600") // Default & Hover state colors
+                                : darkMode
+                                ? "text-gray-300 hover:text-indigo-400"
+                                : "text-gray-700 hover:text-indigo-600" // Default & Hover state colors
                             }
                             `
                           }
@@ -192,7 +208,9 @@ const App = () => {
               ))}
             </nav>
             {/* Toggle button container - ensure positioning and styling are correct */}
-            <div className="mt-auto pt-4 border-t border-gray-300 dark:border-gray-700"> {/* mt-auto pushes it to the bottom */}
+            <div className="mt-auto pt-4 border-t border-gray-300 dark:border-gray-700">
+              {" "}
+              {/* mt-auto pushes it to the bottom */}
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="w-full h-12 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition focus:outline-none"
@@ -207,16 +225,16 @@ const App = () => {
         <main className="flex-1 p-4 overflow-y-auto">
           <Routes>
             {navStructure.flatMap((section) =>
-              section.items.map(({ path, label }) => (
+              section.items.map(({ path, label, component }) => (
                 <Route
                   key={path}
                   path={path}
-                  element={<Placeholder title={label} />}
+                  element={component || <Placeholder title={label} />}
                 />
               ))
             )}
             {/* Default route for the root path */}
-             <Route path="/" element={<Placeholder title="Intro & Purpose" />} />
+            <Route path="/" element={<Placeholder title="Intro & Purpose" />} />
             {/* Fallback route for any other path */}
             <Route path="*" element={<Placeholder title="Intro & Purpose" />} />
           </Routes>
