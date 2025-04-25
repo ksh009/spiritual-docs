@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "open-accordion": "openAccordion 0.3s ease-out forwards",
+        "open-accordion": "openAccordion 7s ease-out forwards",
       },
       keyframes: {
         openAccordion: {

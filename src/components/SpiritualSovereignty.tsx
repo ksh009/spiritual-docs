@@ -32,8 +32,8 @@ export default function SpiritualSovereignty(): React.ReactElement {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
-      <header className="text-center py-4  from-purple-700 to-blue-600 dark:from-indigo-900 dark:to-blue-900">
+    <div className="min-h-screen text-gray-800 dark:text-gray-200 transition-colors duration-300">
+      <header className="text-center py-4 bg-gradient-to-r from-purple-700 to-blue-600 dark:from-indigo-900 dark:to-blue-900 text-gray-800 dark:text-white">
         <h1 className="text-2xl font-bold">Spiritual Sovereignty</h1>
       </header>
 
