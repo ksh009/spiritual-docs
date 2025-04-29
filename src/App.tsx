@@ -6,6 +6,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import SpiritualSovereignty from "./components/topics/SpiritualSovereignty";
+import AwakeningJourney from "./components/topics/AwakeningJourney";
 
 // Define props interface for TypeScript
 interface PlaceholderProps {
@@ -23,7 +24,7 @@ const navStructure = [
     emoji: "🌟",
     label: "Foundational Topics",
     items: [
-      { path: "/awakening-journey", label: "Awakening Journey", component: <SpiritualSovereignty /> },
+      { path: "/awakening-journey", label: "Awakening Journey", component: <AwakeningJourney /> },
       { path: "/non-linear-living", label: "Non-Linear Living", component: <SpiritualSovereignty /> },
       { path: "/sovereignty", label: "Sovereignty", component: <SpiritualSovereignty /> },
       { path: "/ascended-master-path", label: "Ascended Master Path", component: <SpiritualSovereignty /> },
@@ -76,7 +77,7 @@ const App = () => {
         {/* Sidebar */}
         <aside
           className={`
-            fixed top-0 left-0 h-full z-40 w-full transform
+            fixed top-0 left-0 h-screen z-40 w-full transform
             transition-transform duration-300 ease-in-out
             ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
             md:relative md:translate-x-0 md:block md:w-72 md:shadow-none
@@ -90,7 +91,8 @@ const App = () => {
           `}
         >
           {/* Close Button (Mobile Only) - ensure text color works in dark mode */}
-          <div className="flex justify-end md:hidden mb-6">
+          <div className="flex justify-between align-center md:hidden mb-6">
+          <h1 className="text-xl font-bold">Spiritual Docs</h1>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="text-gray-300 dark:text-gray-600 hover:text-red-500 text-xl focus:outline-none"
@@ -162,7 +164,7 @@ const App = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 overflow-y-auto">
+        <main className="flex-1 overflow-y-scroll p-4 h-auto md:h-screen">
           <Routes>
             {navStructure.flatMap((section) =>
               section.items.map(({ path, label, component }) => (
