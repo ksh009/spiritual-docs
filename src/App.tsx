@@ -5,8 +5,7 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
-import SovereigntyFramework from "./components/SovereigntyFramework";
-import SpiritualSovereignty from "./components/SpiritualSovereignty";
+import SpiritualSovereignty from "./components/topics/SpiritualSovereignty";
 
 // Define props interface for TypeScript
 interface PlaceholderProps {
@@ -18,81 +17,22 @@ const Placeholder: React.FC<PlaceholderProps> = ({ title }) => (
   <div className="p-4">{title} Content Coming Soon...</div>
 );
 
+
 const navStructure = [
   {
-    emoji: "🌱",
+    emoji: "🌟",
     label: "Foundational Topics",
     items: [
-      { path: "/intro", label: "Intro & Purpose", component: <SpiritualSovereignty /> },
-      {
-        path: "/framework",
-        label: "Sovereignty Framework",
-        component: <SovereigntyFramework />,
-      },
-      { path: "/why-sovereignty", label: "Why It Matters" },
-      { path: "/awakening", label: "Awakening Process" },
-      { path: "/internal-disillusionment", label: "Disillusionment" },
-      { path: "/ego-death", label: "Ego Death" },
-      { path: "/void", label: "The Void" },
-      { path: "/self-mastery", label: "Self-Mastery" },
-      { path: "/spiral-model", label: "Spiral Model" },
-      { path: "/expansion-contraction", label: "Expansion/Contraction" },
-      { path: "/timeline-shifts", label: "Timeline Shifts" },
-    ],
-  },
-  {
-    emoji: "🧠",
-    label: "Psychological Deconstruction",
-    items: [
-      { path: "/construct", label: "The Construct" },
-      { path: "/scripted-world", label: "Scripted World" },
-      { path: "/loops", label: "Loops & Patterns" },
-      { path: "/creative-energy", label: "Creative Energy" },
-      { path: "/higher-self-shadow", label: "Higher Self vs Shadow" },
-      { path: "/you-are-not-shadow", label: "Not Your Shadow" },
-      { path: "/not-higher-self", label: "Not Higher Self" },
-      { path: "/integration", label: "Integration" },
-      { path: "/ethics", label: "Incarnation Ethics" },
-      { path: "/soul-contracts", label: "Soul Contracts" },
-      { path: "/antenna-vs-sovereign", label: "Antenna vs Sovereign" },
-      { path: "/authorship", label: "Authorship" },
-    ],
-  },
-  {
-    emoji: "💫",
-    label: "Quantum & Multidimensional Themes",
-    items: [
-      { path: "/fractured-mind", label: "Fractured Mind" },
-      { path: "/mental-echoes", label: "Mental Echoes" },
-      { path: "/spiral-thinking", label: "Spiral Thinking" },
-      { path: "/reprogramming", label: "Reprogramming" },
-      { path: "/pluto-deconstruction", label: "Pluto Deconstruction" },
-      { path: "/pluto-role", label: "Pluto's Role" },
-      { path: "/pluto-timeline", label: "Pluto Timeline" },
-      { path: "/144000", label: "144,000 Souls" },
-      { path: "/zodiac-portals", label: "Zodiac Portals" },
-      { path: "/earth-grid", label: "Earth Grid" },
-      { path: "/harmonics", label: "Harmonic Upgrades" },
-      { path: "/future-boredom", label: "Future Boredom" },
-      { path: "/limitation-games", label: "Limitation Games" },
-      { path: "/coding-growth", label: "Coding Growth" },
-      { path: "/system-mastery", label: "System Mastery" },
-    ],
-  },
-  {
-    emoji: "🧙",
-    label: "Archetypes, Emotions & Soul Curricula",
-    items: [
-      { path: "/soul-archetypes", label: "Soul Archetypes" },
-      { path: "/archetype-triggers", label: "Archetype Triggers" },
-      { path: "/balancing-tools", label: "Balancing Tools" },
-      { path: "/emotional-mastery", label: "Emotional Mastery" },
-      { path: "/emotional-sovereignty", label: "Emotional Sovereignty" },
-      { path: "/energy-leaks", label: "Energy Leaks" },
-      { path: "/relationship-lessons", label: "Relationships" },
-      { path: "/twin-flame", label: "Twin Flame" },
-      { path: "/empowered-love", label: "Empowered Love" },
-      { path: "/flowing-intimacy", label: "Flowing Intimacy" },
+      { path: "/awakening-journey", label: "Awakening Journey", component: <SpiritualSovereignty /> },
+      { path: "/non-linear-living", label: "Non-Linear Living", component: <SpiritualSovereignty /> },
+      { path: "/sovereignty", label: "Sovereignty", component: <SpiritualSovereignty /> },
+      { path: "/ascended-master-path", label: "Ascended Master Path", component: <SpiritualSovereignty /> },
+      { path: "/energy-leadership", label: "Leading Through Energy", component: <SpiritualSovereignty /> },
+      { path: "/spiritual-technology", label: "Spiritual Technology", component: <SpiritualSovereignty /> },
+      { path: "/evolved-community", label: "Frequency of Community", component: <SpiritualSovereignty /> },
+      { path: "/healing-blueprint", label: "Healing the Inner Blueprint", component: <SpiritualSovereignty /> },
+      { path: "/soul-missions", label: "Soul Missions", component: <SpiritualSovereignty /> },
+      { path: "/game-mastery", label: "Mastery Over the Game", component: <SpiritualSovereignty /> },
     ],
   },
 ];
