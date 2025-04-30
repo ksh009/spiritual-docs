@@ -100,7 +100,6 @@ const App = () => {
           darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
         }`}
       >
-        
         {/* Mobile Header */}
         <div className="flex items-center justify-between md:hidden p-4 border-b border-gray-300 dark:border-gray-700">
           <h1 className="text-xl font-bold">Spiritual Docs</h1>
@@ -143,7 +142,9 @@ const App = () => {
           </div>
 
           <div className="flex h-full flex-col">
-          <h1 className="hidden md:block text-xl font-bold mb-6">Spiritual Docs</h1>
+            <h1 className="hidden md:block text-xl font-bold mb-6">
+              Spiritual Docs
+            </h1>
             {/* Navigation links container - ensure text color inherits */}
             <nav className="space-y-2 flex-1">
               {" "}
@@ -221,6 +222,22 @@ const App = () => {
             {/* Fallback route for any other path */}
             <Route path="*" element={<Placeholder title="Intro & Purpose" />} />
           </Routes>
+
+          {/* Footer */}
+          <footer className="mt-10 border-t pt-6 text-center text-sm text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700">
+            <p>
+              If this space has inspired you, you can{" "}
+              <a
+                href="https://www.buymeacoffee.com/khughesseao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+              >
+                Buy Me a Coffee
+              </a>{" "}
+              to support this journey.
+            </p>
+          </footer>
         </main>
       </div>
     </Router>
