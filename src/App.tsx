@@ -57,7 +57,7 @@ const App = () => {
     <Router>
       {/* Apply dark mode classes directly to the main container */}
       <div
-        className={`min-h-screen flex flex-col md:flex-row pb-6 ${
+        className={`h-screen overflow-y-auto md:overflow-y-hidden flex flex-col md:flex-row pb-6 ${
           darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
         }`}
       >
