@@ -18,22 +18,61 @@ const Placeholder: React.FC<PlaceholderProps> = ({ title }) => (
   <div className="p-4">{title} Content Coming Soon...</div>
 );
 
-
 const navStructure = [
   {
     emoji: "🌟",
     label: "Foundational Topics",
     items: [
-      { path: "/awakening-journey", label: "Awakening Journey", component: <AwakeningJourney /> },
-      { path: "/non-linear-living", label: "Non-Linear Living", component: <SpiritualSovereignty /> },
-      { path: "/sovereignty", label: "Sovereignty", component: <SpiritualSovereignty /> },
-      { path: "/ascended-master-path", label: "Ascended Master Path", component: <SpiritualSovereignty /> },
-      { path: "/energy-leadership", label: "Leading Through Energy", component: <SpiritualSovereignty /> },
-      { path: "/spiritual-technology", label: "Spiritual Technology", component: <SpiritualSovereignty /> },
-      { path: "/evolved-community", label: "Frequency of Community", component: <SpiritualSovereignty /> },
-      { path: "/healing-blueprint", label: "Healing the Inner Blueprint", component: <SpiritualSovereignty /> },
-      { path: "/soul-missions", label: "Soul Missions", component: <SpiritualSovereignty /> },
-      { path: "/game-mastery", label: "Mastery Over the Game", component: <SpiritualSovereignty /> },
+      {
+        path: "/awakening-journey",
+        label: "Awakening Journey",
+        component: <AwakeningJourney />,
+      },
+      {
+        path: "/non-linear-living",
+        label: "Non-Linear Living",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/sovereignty",
+        label: "Sovereignty",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/ascended-master-path",
+        label: "Ascended Master Path",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/energy-leadership",
+        label: "Leading Through Energy",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/spiritual-technology",
+        label: "Spiritual Technology",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/evolved-community",
+        label: "Frequency of Community",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/healing-blueprint",
+        label: "Healing the Inner Blueprint",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/soul-missions",
+        label: "Soul Missions",
+        component: <SpiritualSovereignty />,
+      },
+      {
+        path: "/game-mastery",
+        label: "Mastery Over the Game",
+        component: <SpiritualSovereignty />,
+      },
     ],
   },
 ];
@@ -61,6 +100,7 @@ const App = () => {
           darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
         }`}
       >
+        
         {/* Mobile Header */}
         <div className="flex items-center justify-between md:hidden p-4 border-b border-gray-300 dark:border-gray-700">
           <h1 className="text-xl font-bold">Spiritual Docs</h1>
@@ -92,7 +132,7 @@ const App = () => {
         >
           {/* Close Button (Mobile Only) - ensure text color works in dark mode */}
           <div className="flex justify-between align-center md:hidden mb-6">
-          <h1 className="text-xl font-bold">Spiritual Docs</h1>
+            <h1 className="text-xl font-bold">Spiritual Docs</h1>
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="text-gray-300 dark:text-gray-600 hover:text-red-500 text-xl focus:outline-none"
@@ -103,6 +143,7 @@ const App = () => {
           </div>
 
           <div className="flex h-full flex-col">
+          <h1 className="hidden md:block text-xl font-bold mb-6">Spiritual Docs</h1>
             {/* Navigation links container - ensure text color inherits */}
             <nav className="space-y-2 flex-1">
               {" "}
